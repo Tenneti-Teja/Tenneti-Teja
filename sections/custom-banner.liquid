@@ -1,0 +1,75 @@
+<section class="custom-banner">
+  <div class="banner-container">
+    <h1>{{ section.settings.heading }}</h1>
+    <p>{{ section.settings.subheading }}</p>
+    <a href="{{ section.settings.button_link }}" class="banner-button">
+      {{ section.settings.button_label }}
+    </a>
+  </div>
+</section>
+
+<style>
+  .custom-banner {
+    background: url('{{ "banner.jpg" | asset_url }}') center/cover no-repeat;
+    padding: 100px 20px;
+    text-align: center;
+    color: white;
+  }
+
+  .banner-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .banner-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 28px;
+    background-color: #000;
+    color: white;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+  }
+
+  .banner-button:hover {
+    transform: scale(1.05);
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Custom Banner",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Main Heading",
+      "default": "Welcome to Our Store"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Discover our latest collection"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Banner",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
