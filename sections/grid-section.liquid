@@ -1,16 +1,60 @@
-<!-- sections/grid-section.liquid -->
+<div class="product-grid-section">
+  <div class="grid">
+    {% for block in section.blocks %}
+      {% assign product = block.settings.product %}
+      {% if product != blank %}
+        <div class="grid-item" data-product-handle="{{ product.handle }}">
+          <img src="{{ product.featured_image | image_url: width: 400 }}" alt="{{ product.title }}" />
+          <h3>{{ product.title }}</h3>
+          <p>{{ product.price | money }}</p>
+          <button class="open-popup" data-handle="{{ product.handle }}">View</button>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+  .product-grid-section {
+    padding: 2rem;
+    background: #f9f9f9;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+  .grid-item {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    text-align: center;
+    background: #fff;
+  }
+</style>
 
 {% schema %}
 {
-  "name": "Product Grid Section",
+  "name": "Grid Section",
   "settings": [],
-  "blocks": [],
-  "presets": {
-    "name": "Product Grid"
-  }
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Select Product"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Grid Section",
+      "category": "Custom"
+    }
+  ]
 }
 {% endschema %}
-
-<div>
-  <h2 class="text-2xl font-bold text-center mt-10">Product Grid Placeholder</h2>
-</div>
